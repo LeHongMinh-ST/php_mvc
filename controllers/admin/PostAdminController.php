@@ -21,19 +21,20 @@ class PostAdminController extends AdminController {
     }
 
     public function store($data) {
+        $data['slug'] = $this->toSlug($data['name']);
         $this->model->insert($data);
         $this->redirect('index.php?mod=post&act=list');
     }
 
     public function show($id) {
 
-        $post = $this->model->find($id);
+        $post = $this->model->first($id);
 
         $this->view('Post/detail.php' , ['posts' => $post]);
     }
 
     public function edit($id) {
-        $post = $this->model->find($id);
+        $post = $this->model->first($id);
         $this->view('Post/edit_process.php' , ['post' => $post]);
     }
 
@@ -42,10 +43,23 @@ class PostAdminController extends AdminController {
         $this->redirect('index.php?mod=post&act=list');
     }
 
-    public function destro($id) {
+    public function destroy($id) {
         $this->model->delete($id);
         $this->redirect('index.php?mod=post&act=list');
     }
 
+    public function toSlug($str) {
+        $str = trim(mb_strtolower($str));
+        $str = preg_replace('/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/', 'a', $str);
+        $str = preg_replace('/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/', 'e', $str);
+        $str = preg_replace('/(ì|í|ị|ỉ|ĩ)/', 'i', $str);
+        $str = preg_replace('/(ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ)/', 'o', $str);
+        $str = preg_replace('/(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ)/', 'u', $str);
+        $str = preg_replace('/(ỳ|ý|ỵ|ỷ|ỹ)/', 'y', $str);
+        $str = preg_replace('/(đ)/', 'd', $str);
+        $str = preg_replace('/[^a-z0-9-\s]/', '', $str);
+        $str = preg_replace('/([\s]+)/', '-', $str);
+        return $str;
+    }
 }
 ?>
