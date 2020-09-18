@@ -6,7 +6,7 @@ class HomeClientController extends ClientController{
 
     public function index()
     {
-        $this->view('client/layouts/master.php',[
+        $this->view(URL_MASTER_CLIENT,[
             'page'=>'home'
         ]);
     }
@@ -19,9 +19,22 @@ class HomeClientController extends ClientController{
         $model = new Post();
         $posts = $model->findWhere(['category_id'=>$category['id']]);//Lấy ra các bài post thuộc category vừa tìm được
 
-        $this->view('client/layouts/master.php',[
-            'page'  =>'category',
-            'posts' =>$posts
+        $this->view(URL_MASTER_CLIENT,[
+            'page'      =>'category',
+            'posts'     =>$posts,
+            'category_post'  =>$category
+        ]);
+    }
+
+    public function post($slug)
+    {
+        $model = new Post();
+        $post = $model->first(['slug'=>$slug]);
+
+        $this->view(URL_MASTER_CLIENT,[
+            'page'      =>'post',
+            'post'      => $post,
+            
         ]);
     }
 }

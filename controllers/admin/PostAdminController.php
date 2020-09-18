@@ -13,17 +13,22 @@ class PostAdminController extends AdminController {
 
     public function index() {
         $posts = $this->model->select();
-        $this->view('Post/list.php' , ['posts' => $posts]);
+        $this->view(URL_MASTER_ADMIN , [
+            'page' =>   'post/index',
+            'posts' =>   $posts,
+        ]);
     }
 
     public function create() {
-        $this->view('Post/add_process.php' , []);
+        $this->view(URL_MASTER_ADMIN , [
+            'page' =>   'post/create',
+        ]);
     }
 
     public function store($data) {
         $data['slug'] = $this->toSlug($data['name']);
         $this->model->insert($data);
-        $this->redirect('index.php?mod=post&act=list');
+        $this->redirect('index.php?mod=admin&c=post');
     }
 
     public function show($id) {
@@ -34,18 +39,21 @@ class PostAdminController extends AdminController {
     }
 
     public function edit($id) {
-        $post = $this->model->first($id);
-        $this->view('Post/edit_process.php' , ['post' => $post]);
+        $post = $this->model->first(['id'=>$id]);
+        $this->view( URL_MASTER_ADMIN, [
+            'page'=>'post/update',
+            'post' => $post
+        ]);
     }
 
     public function update($id , $data) {
         $this->model->update($id , $data);
-        $this->redirect('index.php?mod=post&act=list');
+        $this->redirect('index.php?mod=admin&c=post');
     }
 
     public function destroy($id) {
         $this->model->delete($id);
-        $this->redirect('index.php?mod=post&act=list');
+        $this->redirect('index.php?mod=admin&c=post');
     }
 
     public function toSlug($str) {

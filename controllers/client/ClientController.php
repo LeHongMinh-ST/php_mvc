@@ -10,7 +10,7 @@ class ClientController extends Controller {
 
     public function view($path, $data = [])
     {
-        $categories = $this->getCLientMenu();
+        $categories_menu = $this->getCLientMenu();
         extract($data);
         require_once "views/" . $path;
     }

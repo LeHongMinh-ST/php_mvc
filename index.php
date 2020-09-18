@@ -2,6 +2,8 @@
 
     define('URL_TEMPLATE_CLIENT','http://php.minh.vn:8080/Zent_mvc/public/client/');
     define('URL_TEMPLATE_ADMIN','http://php.minh.vn:8080/Zent_mvc/public/admin/');
+    define('URL_MASTER_ADMIN','admin/server/layouts/master.php');
+    define('URL_MASTER_CLIENT','client/layouts/master.php');
 
     session_start();
     class App
@@ -23,9 +25,13 @@
             if(isset($_GET['c']))
                 $this->c = $_GET['c'];
 
+            if(isset($_GET['slug'])){
+                $this->params[] = $_GET['slug'];
+            }
 
-            $this->params['slug']   = isset($_GET['slug']) ? $_GET['slug']:[];
-            $this->params['id']     = isset($_GET['id']) ? $_GET['id']:[];
+            if(isset($_GET['id'])){
+                $this->params[] = $_GET['id'];
+            }
             $data[]                 = $_POST;
             $data[]                 = $_FILES;
             $this->params['data']   = $data;

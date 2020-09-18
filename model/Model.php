@@ -153,13 +153,7 @@ class Model {
         return $data;
     }
 
-    public function getUserByName($name) {
-        $query = "SELECT * FROM $this->table where name=" . "'" .  $name . "'";
-
-        $result = $this->connection->query($query);
-        $user = $result->fetch_assoc();
-        return $user;
-    }
+    
 }
 
 ?>

@@ -13,3 +13,4 @@
     <script src="<?php echo URL_TEMPLATE_ADMIN?>/assets/javascript/theme.min.js"></script> <!-- END THEME JS -->
     <!-- BEGIN PAGE LEVEL JS -->
     <script src="<?php echo URL_TEMPLATE_ADMIN?>/assets/javascript/pages/dashboard-demo.js"></script> <!-- END PAGE LEVEL JS -->
+    <script src="<?php echo URL_TEMPLATE_ADMIN?>assets/javascript/pages/summernote-demo.js"></script>

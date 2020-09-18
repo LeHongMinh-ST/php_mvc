@@ -7,7 +7,7 @@
               <header class="page-title-bar">
                 <div class="d-flex flex-column flex-md-row">
                   <p class="lead">
-                    <span class="font-weight-bold">Hi, Beni.</span> <span class="d-block text-muted">Here’s what’s happening with your business today.</span>
+                    <span class="font-weight-bold">Hi, <?php if($_SESSION['auth']) echo $_SESSION['auth']['name']?>.</span> <span class="d-block text-muted">Here’s what’s happening with your business today.</span>
                   </p>
                   <div class="ml-auto">
                     <!-- .dropdown -->

@@ -12,7 +12,7 @@
     <header class="s-header header">
 
         <div class="header__logo">
-            <a class="logo" href="">
+            <a class="logo" href="?">
                 <img src="<?php echo URL_TEMPLATE_CLIENT?>images/logo.svg" alt="Homepage">
             </a>
         </div> <!-- end header__logo -->
@@ -38,11 +38,11 @@
             <h2 class="header__nav-heading h6">Navigate to</h2>
 
             <ul class="header__nav">
-                <li class="current"><a href="index.html" title="">Home</a></li>
+                <li class="current"><a href="?" title="">Home</a></li>
                 <li class="has-children">
                     <a href="#0" title="">Categories</a>
                     <ul class="sub-menu">
-                        <?php foreach($categories as $category){?>
+                        <?php foreach($categories_menu as $category){?>
                         <li><a href="?act=category&slug=<?php echo  $category['slug']?>"><?php echo $category['name']?></a></li>
                         <?php }?>
                     </ul>
